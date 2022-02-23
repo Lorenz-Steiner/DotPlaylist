@@ -14,3 +14,9 @@ button{
 span{
   margin-left: 1em;
 }
+#info{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: lightgreen;
+  border-radius: 30px;
+}
