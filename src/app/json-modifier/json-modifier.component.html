@@ -1,0 +1,12 @@
+<div>
+  <label>Open File</label>
+  <input type="file" (change)="onFileUpload($event)" #fileUpload onchange="console.log(event.target.files)">
+</div>
+<div>
+  <ul id="items" class="list-group">
+    <label>{{this.playlist.name}}</label>
+    <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item">{{this.playlist.cliplist[i]}}</li>
+  </ul>
+  <button class="btn btn-info" (click)="onClick()">Save</button>
+  <button class="btn btn-info" (click)="onExport()">Export</button>
+</div>
