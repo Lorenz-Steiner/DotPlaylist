@@ -1,12 +1,21 @@
-<div>
-  <label>Open File</label>
-  <input type="file" (change)="onFileUpload($event)" #fileUpload onchange="console.log(event.target.files)">
-</div>
-<div>
-  <ul id="items" class="list-group">
-    <label>{{this.playlist.name}}</label>
-    <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item">{{this.playlist.cliplist[i]}}</li>
-  </ul>
-  <button class="btn btn-info" (click)="onClick()">Save</button>
-  <button class="btn btn-info" (click)="onExport()">Export</button>
+<div class="container">
+  <div style="margin-top: 3em; text-align: center">
+    <label style="margin-right: 1em">Open File =></label>
+    <input type="file" (change)="onFileUpload($event)" #fileUpload>
+  </div>
+  <div style="margin-top: 5em">
+    <ul id="items" class="list-group">
+      <label class="form-label" style="margin: 0 auto">Filename </label>
+      <input id="fileName" class="input-group-text" type="text" [defaultValue]="this.playlist.name" [(ngModel)]="this.playlist.name"/>
+      <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item" name="clips">{{this.playlist.cliplist[i].split('.')[0]}}
+        <span class="badge bg-info rounded-pill">{{this.arr[i].split('.').pop()}}</span>
+        <span class="badge bg-success rounded-pill">{{this.nameCorrect[i]}}</span>
+      </li>
+    </ul>
+    <div class="container" style="margin: 0 auto; text-align: center">
+      <button class="btn btn-info" (click)="onSave()">Save Sorting (NOT saving to File)</button>
+      <button class="btn btn-info" (click)="onExport()">Export</button>
+    </div>
+
+  </div>
 </div>

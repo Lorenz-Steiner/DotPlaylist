@@ -1,0 +1,16 @@
+div{
+  margin: 0 auto;
+}
+
+#fileName{
+  margin: 0 auto 2em auto;
+  width: 20em;
+}
+
+button{
+  margin: 2em 1em 3em auto;
+}
+
+span{
+  margin-left: 1em;
+}
