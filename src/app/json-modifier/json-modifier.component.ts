@@ -27,8 +27,6 @@ export class JsonModifierComponent implements OnInit {
   }
 
   onFileUpload(event: Event){
-
-
     // @ts-ignore
     let file:File = event.target.files[0];
     if(file){
@@ -74,8 +72,12 @@ export class JsonModifierComponent implements OnInit {
 
   onSave(){
     document.getElementsByName("clips").forEach((element, index) => {
-      this.playlist.cliplist[index] = element.innerHTML;
+
+      // @ts-ignore
+      this.playlist.cliplist[index] = document.getElementsByTagName("input").item(index).value
     })
+
+
   }
 
   onExport(){
