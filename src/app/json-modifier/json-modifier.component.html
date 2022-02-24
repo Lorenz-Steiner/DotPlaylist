@@ -16,7 +16,7 @@
       <label class="form-label" style="margin: 0 auto">Filename </label>
       <input id="fileName" class="input-group-text" type="text" [defaultValue]="this.playlist.name" [(ngModel)]="this.playlist.name"/>
       <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item" name="clips">
-        <div class="container form-control">
+        <div class="container">
           <span class="icon-move"><i class="bi bi-arrows-move"></i></span>
           <input class="file-name" name="files" value="{{this.playlist.cliplist[i].split('.')[0]}}">
           <span class="badge bg-info rounded-pill">{{this.arr[i].split('.').pop()}}</span>
