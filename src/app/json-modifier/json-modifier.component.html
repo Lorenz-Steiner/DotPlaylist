@@ -16,9 +16,13 @@
       <label class="form-label" style="margin: 0 auto">Filename </label>
       <input id="fileName" class="input-group-text" type="text" [defaultValue]="this.playlist.name" [(ngModel)]="this.playlist.name"/>
       <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item" name="clips">
+        <div>
+          <span class=""><i class="bi bi-alarm"></i></span>
+          <span class="badge bg-info rounded-pill">{{this.arr[i].split('.').pop()}}</span>
+          <span class="badge bg-success rounded-pill">{{this.nameCorrect[i]}}</span>
+        </div>
         <input name="files" value="{{this.playlist.cliplist[i].split('.')[0]}}">
-        <span class="badge bg-info rounded-pill">{{this.arr[i].split('.').pop()}}</span>
-        <span class="badge bg-success rounded-pill">{{this.nameCorrect[i]}}</span>
+
       </li>
     </ul>
     <div class="container" style="margin: 0 auto; text-align: center">
