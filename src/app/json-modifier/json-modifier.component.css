@@ -11,7 +11,12 @@ button{
   margin: 2em 1em 3em auto;
 }
 
-span{
+.icon-move {
+  margin-left: 0.5em;
+  margin-right: 1em;
+}
+
+.badge{
   margin-left: 1em;
 }
 #info{
@@ -19,4 +24,15 @@ span{
   padding-bottom: 1em;
   background-color: lightgreen;
   border-radius: 30px;
+}
+
+.file-name {
+  border-radius: 3px;
+  margin-top: 0;
+  margin-left: 3em;
+  width: 50%;
+}
+
+i:hover {
+  cursor: move;
 }

@@ -48,7 +48,10 @@ export class JsonModifierComponent implements OnInit {
       }
       let el = document.getElementById("items");
       // @ts-ignore
-      let sort = Sortable.create(el, {animation: 150});
+      let sort = Sortable.create(el, {
+        animation: 150,
+        handle: '.icon-move'
+      });
       this.sortable = sort;
       // save initial order
       let initialOrder = this.sortable.toArray();
