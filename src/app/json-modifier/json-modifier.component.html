@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="container text-center mt-5" id="info">
+  <div class="container text-centered mt-5" id="info">
     <p>
       WebApp features:
     </p>
@@ -15,9 +15,13 @@
     <ul id="items" class="list-group">
       <label class="form-label" style="margin: 0 auto">Filename </label>
       <input id="fileName" class="input-group-text" type="text" [defaultValue]="this.playlist.name" [(ngModel)]="this.playlist.name"/>
-      <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item" name="clips">{{this.playlist.cliplist[i].split('.')[0]}}
-        <span class="badge bg-info rounded-pill">{{this.arr[i].split('.').pop()}}</span>
-        <span class="badge bg-success rounded-pill">{{this.nameCorrect[i]}}</span>
+      <li *ngFor="let current of playlist.cliplist; let i = index" class="list-group-item" name="clips">
+        <div class="container" name="divC">
+          <span class="icon-move"><i class="bi bi-arrows-move"></i></span>
+          <input class="file-name" name="files" [(ngModel)]="this.filename[i]">
+          <span class="badge bg-info rounded-pill">{{this.fileExtension[i]}}</span>
+          <span class="badge bg-success rounded-pill">{{this.nameCorrect[i]}}</span>
+        </div>
       </li>
     </ul>
     <div class="container" style="margin: 0 auto; text-align: center">
