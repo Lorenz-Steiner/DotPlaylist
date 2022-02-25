@@ -14,6 +14,18 @@ export class JsonModifierComponent implements OnInit {
   playlist: Playlist = new Playlist();
   arr: string[] = [];
 
+  file: {
+    fileName: string;
+    fileExtension: string;
+    id: number;
+  }[] = [];
+
+  filename: string[] = [];
+  fileExtension: string[] = [];
+  sortID: string[] = [];
+
+  listitems: HTMLLIElement [] = [];
+
   notAssignable: string[] = ["\u00fc", "\u00e4", "\u00f6", " ", "/", "\u00df", "\u00dc"];
   nameCorrect: string[] = new Array(this.arr.length);
   sortable?:Sortable;
@@ -23,7 +35,12 @@ export class JsonModifierComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    let el = document.getElementById("items");
+    // @ts-ignore
+    this.sortable = Sortable.create(el, {
+      animation: 150,
+      handle: '.icon-move'
+    });
   }
 
   onFileUpload(event: Event){
@@ -35,52 +52,35 @@ export class JsonModifierComponent implements OnInit {
       fileReader.onload = () => {
         // @ts-ignore
         this.playlist = (JSON.parse(fileReader.result.toString()));
-        this.arr = this.playlist.cliplist;
+        for(let i = 0; i < this.playlist.cliplist.length; i++){
+          //this.file[i].fileName = this.playlist.cliplist[i].split(".")[0];
+          //this.file[i].fileExtension = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length-1];
+          //this.file[i].id = i;
 
-        for(let i = 0; i < this.arr.length; i++){
-          for(let j = 0; j < this.notAssignable.length; j++){
-            if(this.arr[i].split('.')[0].indexOf(this.notAssignable[j]) > -1){
-              this.nameCorrect[i] = "Name CORRUPTED and CORRECTED!";
-              this.arr[i] = this.replaceUmlaute(this.arr[i]);
-            }
-          }
+          this.filename[i] = this.playlist.cliplist[i].split(".")[0];
+          this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length-1];
         }
+        this.findUmalaute();
       }
-      let el = document.getElementById("items");
-      // @ts-ignore
-      let sort = Sortable.create(el, {
-        animation: 150,
-        handle: '.icon-move'
-      });
-      this.sortable = sort;
-      // save initial order
-      let initialOrder = this.sortable.toArray();
+
     }
   }
 
-  replaceUmlaute(str: string) {
-    let value = str.replace(/ä/g, 'ae');
-    value = value.replace(/ö/g, 'oe');
-    value = value.replace(/Ö/g, 'oe');
-    value = value.replace(/Ü/g, 'oe');
-    value = value.replace(/Ä/g, 'oe');
-    value = value.replace(/ü/g, 'ue');
-    value = value.replace(/ß/g, 'ss');
-    value = value.replace(/ /g, '-');
-    value = value.replace(/,/g, '');
-    value = value.replace(/\(/g, '');
-    value = value.replace(/\)/g, '');
-    return value;
+  findUmalaute(){
+    for(let i = 0; i < this.filename.length; i++){
+      for(let j = 0; j < this.notAssignable.length; j++){
+        if(this.filename[i].split('.')[0].indexOf(this.notAssignable[j]) > -1){
+          this.nameCorrect[i] = "Name CORRUPTED!";
+        }
+      }
+    }
   }
 
   onSave(){
-    document.getElementsByName("clips").forEach((element, index) => {
-
+    for(let i = 0; i < this.playlist.cliplist.length; i++){
       // @ts-ignore
-      this.playlist.cliplist[index] = document.getElementsByTagName("input").item(index).value
-    })
-
-
+      this.playlist.cliplist[i] = document.getElementsByName("files")[i].value + "." + this.fileExtension[i];
+    }
   }
 
   onExport(){
