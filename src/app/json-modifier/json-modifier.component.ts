@@ -14,17 +14,8 @@ export class JsonModifierComponent implements OnInit {
   playlist: Playlist = new Playlist();
   arr: string[] = [];
 
-  file: {
-    fileName: string;
-    fileExtension: string;
-    id: number;
-  }[] = [];
-
   filename: string[] = [];
   fileExtension: string[] = [];
-  sortID: string[] = [];
-
-  listitems: HTMLLIElement [] = [];
 
   notAssignable: string[] = ["\u00fc", "\u00e4", "\u00f6", " ", "/", "\u00df", "\u00dc"];
   nameCorrect: string[] = new Array(this.arr.length);
@@ -53,10 +44,6 @@ export class JsonModifierComponent implements OnInit {
         // @ts-ignore
         this.playlist = (JSON.parse(fileReader.result.toString()));
         for(let i = 0; i < this.playlist.cliplist.length; i++){
-          //this.file[i].fileName = this.playlist.cliplist[i].split(".")[0];
-          //this.file[i].fileExtension = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length-1];
-          //this.file[i].id = i;
-
           this.filename[i] = this.playlist.cliplist[i].split(".")[0];
           this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length-1];
         }
@@ -79,7 +66,7 @@ export class JsonModifierComponent implements OnInit {
   onSave(){
     for(let i = 0; i < this.playlist.cliplist.length; i++){
       // @ts-ignore
-      this.playlist.cliplist[i] = document.getElementsByName("files")[i].value + "." + this.fileExtension[i];
+      this.playlist.cliplist[i] = document.getElementsByName("files")[i].value + "." + document.getElementsByName("extension")[i].innerText;
     }
   }
 
