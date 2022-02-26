@@ -2,6 +2,31 @@ div{
   margin: 0 auto;
 }
 
+.input-container{
+  display: inline-block;
+  position: relative;
+  overflow: auto;
+}
+
+.input-addon {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+}
+
+.file-container {
+  margin-top: 2em;
+  width: 500px;
+  border: 4px dotted dodgerblue;
+}
+
+.file-drag {
+  opacity: 0;
+  padding: 4rem;
+  width: auto;
+  height: 4rem;
+}
+
 #fileName{
   margin: 0 auto 2em auto;
   width: 20em;

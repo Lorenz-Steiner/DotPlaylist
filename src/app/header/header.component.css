@@ -1,0 +1,22 @@
+nav{
+  background: none;
+}
+a{
+  color: black;
+}
+
+a:hover{
+  background: lightgray;
+  border-radius: 20px;
+  transition: transform .2s;
+  transform: scale(1.2);
+  color: blue;
+}
+
+.wrapper {
+  padding-top: 3em;
+}
+
+.underline {
+  text-decoration: underline 0.15em forestgreen;
+}

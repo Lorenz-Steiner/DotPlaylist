@@ -1,8 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Playlist} from "../playlist";
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
-import {animate} from "@angular/animations";
-import {colors} from "@angular/cli/utilities/color";
+import {PlaylistService} from "../playlist.service";
 
 @Component({
   selector: 'app-json-modifier',
@@ -11,17 +9,8 @@ import {colors} from "@angular/cli/utilities/color";
 })
 export class JsonModifierComponent implements OnInit {
 
-  playlist: Playlist = new Playlist();
-  arr: string[] = [];
 
-  filename: string[] = [];
-  fileExtension: string[] = [];
-
-  notAssignable: string[] = ["\u00fc", "\u00e4", "\u00f6", " ", "/", "\u00df", "\u00dc"];
-  nameCorrect: string[] = new Array(this.arr.length);
-  sortable?:Sortable;
-
-  constructor() {
+  constructor(public service: PlaylistService) {
 
   }
 
@@ -35,54 +24,16 @@ export class JsonModifierComponent implements OnInit {
   }
 
   onFileUpload(event: Event){
-    // @ts-ignore
-    let file:File = event.target.files[0];
-    if(file){
-      const fileReader = new FileReader();
-      fileReader.readAsText(file, "UTF-8");
-      fileReader.onload = () => {
-        // @ts-ignore
-        this.playlist = (JSON.parse(fileReader.result.toString()));
-        for(let i = 0; i < this.playlist.cliplist.length; i++){
-          this.filename[i] = this.playlist.cliplist[i].split(".")[0];
-          this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length-1];
-        }
-        this.findUmalaute();
-      }
-
-    }
+   this.service.getFile(event);
   }
 
-  findUmalaute(){
-    for(let i = 0; i < this.filename.length; i++){
-      for(let j = 0; j < this.notAssignable.length; j++){
-        if(this.filename[i].split('.')[0].indexOf(this.notAssignable[j]) > -1){
-          this.nameCorrect[i] = "Name CORRUPTED!";
-        }
-      }
-    }
-  }
 
   onSave(){
-    for(let i = 0; i < this.playlist.cliplist.length; i++){
-      // @ts-ignore
-      this.playlist.cliplist[i] = document.getElementsByName("files")[i].value + "." + document.getElementsByName("extension")[i].innerText;
-      // @ts-ignore
-      this.filename[i] = document.getElementsByName("files")[i].value;
-      this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
-      this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
-    }
+    this.service.onSave();
   }
 
   onExport(){
-    var sJson = JSON.stringify(this.playlist);
-    var element = document.createElement('a');
-    element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
-    element.setAttribute('download', this.playlist.name + ".playlist");
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click(); // simulate click
-    document.body.removeChild(element);
+    this.service.onExport();
   }
 
 

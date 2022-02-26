@@ -1,0 +1,8 @@
+<div class="base" >
+  <div class="row" id="items">
+    <div class="collu" *ngFor="let current of compactService.playlist.cliplist; let i = index">
+      <div class="grid-square"><p>{{i}}</p><p>{{this.compactService.filename[i]}}</p></div>
+    </div>
+  </div>
+</div>
+

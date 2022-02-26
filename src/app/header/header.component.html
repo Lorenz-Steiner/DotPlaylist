@@ -1,0 +1,17 @@
+<div class="wrapper text-center">
+  <nav class="navbar navbar-expand-lg navbar-text">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home" routerLinkActive="underline"><i class="bi bi-cloud-haze2 mr-2"></i>Home</a>
+        </li>
+        <li class="nav-item active">
+          <a [hidden]="!this.service.current" class="nav-link" routerLink="grid" routerLinkActive="underline"><i class="bi bi-grid"></i>Grid</a>
+        </li>
+        <li class="nav-item active">
+          <a [hidden]="!this.service.current" class="nav-link" routerLink="compact" routerLinkActive="underline"><i class="bi bi-grid-3x3-gap"></i>Compact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,9 @@
+<div>
+  <div class="row">
+    <ul class="col" id="items">
+      <li *ngFor="let current of this.gridService.playlist.cliplist; let i = index">
+        <span class="badge bg-info">{{this.gridService.filename[i] + "." + this.gridService.fileExtension[i]}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

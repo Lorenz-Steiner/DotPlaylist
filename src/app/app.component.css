@@ -1,0 +1,10 @@
+div{
+  font-family: arial;
+  font-size: 24px;
+  margin: auto;
+  width: 800px;
+  height: 300px;
+  border: grey;
+  border-radius: 50%;
+  text-align: center;
+}
