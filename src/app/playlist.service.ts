@@ -11,6 +11,7 @@ export class PlaylistService {
   playlist: Playlist = new Playlist();
 
   files:File[] =[];
+  playlistFile?: File;
   current: boolean = false;
 
   filename: string[] = [];
@@ -28,11 +29,11 @@ export class PlaylistService {
       // @ts-ignore
       this.files = event.target.files;
       if(this.files){
-        let playlistFile: File = (this.files)[0];
+        this.playlistFile = (this.files)[0];
         if(this.current) {
           if (confirm("Do you want to replace the current .playlist?")) {
             const fileReader = new FileReader();
-            fileReader.readAsText(playlistFile, "UTF-8");
+            fileReader.readAsText(this.playlistFile, "UTF-8");
             fileReader.onload = () => {
               // @ts-ignore
               this.playlist = (JSON.parse(fileReader.result.toString()));

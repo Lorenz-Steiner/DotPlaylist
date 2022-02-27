@@ -9,13 +9,13 @@ function createWindow () {
     width: 1920,
     height: 1080,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     }
   })
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, `/dist/dot-playlist/index.html`),
+      pathname: path.join(__dirname, `dist/dot-playlist/index.html`),
       protocol: "file:",
       slashes: true
     })
