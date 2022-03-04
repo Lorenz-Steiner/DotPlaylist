@@ -3,8 +3,6 @@ div{
   font-size: 24px;
   margin: auto;
   width: 800px;
-  height: 300px;
-  border: grey;
-  border-radius: 50%;
+  height: 100%;
   text-align: center;
 }

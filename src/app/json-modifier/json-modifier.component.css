@@ -1,5 +1,14 @@
 div{
   margin: 0 auto;
+  text-align: left;
+}
+
+.list-group-item{
+  width: 35em;
+}
+
+.list-group {
+  width: 40em;
 }
 
 .input-container{
@@ -28,36 +37,27 @@ div{
 }
 
 #fileName{
-  margin: 0 auto 2em auto;
   width: 20em;
-}
-
-button{
-  margin: 2em 1em 3em auto;
-}
-
-.icon-move {
-  margin-left: 0.5em;
-  margin-right: 1em;
 }
 
 .badge{
   margin-left: 1em;
 }
-#info{
-  padding-top: 1em;
-  padding-bottom: 1em;
-  background-color: lightgreen;
-  border-radius: 30px;
+
+.icon-move{
+  margin-left: 1em;
 }
 
 .file-name {
   border-radius: 3px;
   margin-top: 0;
-  margin-left: 3em;
+  margin-left: 1em;
   width: 50%;
 }
 
-i:hover {
-  cursor: move;
+#move:hover {
+  cursor: grab;
+}
+#move:active{
+  cursor: grabbing;
 }

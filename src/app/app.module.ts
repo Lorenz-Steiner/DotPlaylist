@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import {RouterModule, Routes} from "@angular/router";
 import { CompactComponent } from './compact/compact.component';
 import { GridComponent } from './grid/grid.component';
+import { HelpComponent } from './help/help.component';
+
 
 const routes: Routes = [
   {path: 'home', component: JsonModifierComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
     JsonModifierComponent,
     HeaderComponent,
     CompactComponent,
-    GridComponent
+    GridComponent,
+    HelpComponent
   ],
     imports: [
         BrowserModule,

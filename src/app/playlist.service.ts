@@ -9,10 +9,11 @@ import {Event} from "@angular/router";
 export class PlaylistService {
 
   playlist: Playlist = new Playlist();
-
+  helpActive: boolean = false;
   files:File[] =[];
   playlistFile?: File;
   current: boolean = false;
+  playlistFileName: string = "";
 
   filename: string[] = [];
   fileExtension: string[] = [];
@@ -32,6 +33,7 @@ export class PlaylistService {
         this.playlistFile = (this.files)[0];
         if(this.current) {
           if (confirm("Do you want to replace the current .playlist?")) {
+            this.playlistFileName = this.playlistFile.name;
             const fileReader = new FileReader();
             fileReader.readAsText(this.playlistFile, "UTF-8");
             fileReader.onload = () => {
@@ -48,9 +50,10 @@ export class PlaylistService {
             return;
           }
         }else {
-          let playlistFile: File = (this.files)[0];
+         this.playlistFile = (this.files)[0];
+          this.playlistFileName = this.playlistFile.name;
           const fileReader = new FileReader();
-          fileReader.readAsText(playlistFile, "UTF-8");
+          fileReader.readAsText(this.playlistFile, "UTF-8");
           fileReader.onload = () => {
             // @ts-ignore
             this.playlist = (JSON.parse(fileReader.result.toString()));
@@ -80,6 +83,7 @@ export class PlaylistService {
   }
 
   findUmalaute(){
+    this.nameCorrect = [];
     for(let i = 0; i < this.playlist.cliplist.length; i++){
       for(let j = 0; j < this.notAssignable.length; j++){
         if(this.filename[i].indexOf(this.notAssignable[j]) > -1){
@@ -101,6 +105,14 @@ export class PlaylistService {
   }
 
   onExport(){
+    console.log(this.playlistFileName.split(".").length);
+    if(this.playlistFileName.split(".").length < 3){
+      this.playlist.name = this.playlistFileName.split(".")[0];
+    }else{
+      alert("Filename of .playlist is corrupted");
+      return;
+    }
+
     var sJson = JSON.stringify(this.playlist);
     var element = document.createElement('a');
     element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
@@ -109,6 +121,10 @@ export class PlaylistService {
     document.body.appendChild(element);
     element.click(); // simulate click
     document.body.removeChild(element);
+  }
+
+  onHelp(){
+    this.helpActive = !this.helpActive;
   }
 
   constructor() { }

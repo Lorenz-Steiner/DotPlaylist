@@ -1,12 +1,4 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
-  <div class="container text-centered mt-5" id="info">
-    <p>
-      WebApp features:
-    </p>
-    <p>
-      Checks filenames for not allowed characters and changes it automatically. Displays filename extensions. Can save new ordered playlist and export it.
-    </p>
-  </div>
   <div style="margin-top: 3em; text-align: center">
     <label style="margin-right: 1em">Open File =></label>
     <input type="file" (change)="onFileUpload($event)" #fileUpload>
@@ -14,26 +6,16 @@
       <input type="file" class="file-drag" (change)="onFileUpload($event)" multiple="true">
     </div>
   </div>
-  <div style="margin-top: 5em">
+  <div style="margin-top: 5em" class="fileList">
     <ul id="items" class="list-group">
-      <label class="form-label" style="margin: 0 auto">Filename </label>
-      <div class="input-container">
-        <input id="fileName" class="input-group-text" type="text" [defaultValue]="this.service.playlist.name" [(ngModel)]="this.service.playlist.name">
-        <span class="badge bg-success input-addon">.playlist</span>
-      </div>
       <li *ngFor="let current of this.service.playlist.cliplist; let i = index" class="list-group-item" name="clips">
-        <div class="container" name="divC">
-          <span class="icon-move"><i class="bi bi-arrows-move"></i></span>
+        <div name="divC">
+          <span class="icon-move"><i id="move" class="bi bi-chevron-bar-expand"></i></span>
           <input class="file-name" name="files" [(ngModel)]="this.service.filename[i]">
-          <span class="badge bg-info rounded-pill" name="extension">{{this.service.fileExtension[i]}}</span>
-          <span class="badge bg-danger rounded-pill"><i *ngIf="this.service.nameCorrect[i] === 'Name CORRUPTED!'" class="bi bi-file-earmark-excel"></i><p hidden name="correct">{{this.service.nameCorrect[i]}}</p></span>
+          <span class="badge bg-secondary rounded-pill" name="extension">.{{this.service.fileExtension[i]}}</span>
+          <span *ngIf="this.service.nameCorrect[i] === 'Name CORRUPTED!'" class="badge bg-danger rounded-pill"><i class="bi bi-file-earmark-excel"></i><p hidden name="correct">{{this.service.nameCorrect[i]}}</p></span>
         </div>
       </li>
     </ul>
-    <div class="container" style="margin: 0 auto; text-align: center">
-      <button class="btn btn-info" (click)="onSave()">Save Sorting (NOT saving to File)</button>
-      <button class="btn btn-info" (click)="onExport()">Export</button>
-    </div>
-
   </div>
 </div>

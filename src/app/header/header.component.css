@@ -1,11 +1,34 @@
-nav{
-  background: none;
-}
 a{
   color: black;
 }
 
-a:hover{
+i{
+  text-transform: none;
+}
+
+#left-menu {
+  margin-left: 4em;
+}
+
+#right-icon{
+  margin-left: 0.75em;
+}
+
+.icons {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+}
+
+.icons:hover{
+  background: lightgray;
+  border-radius: 50%;
+  transition: transform .2s;
+  transform: scale(1.2);
+  color: blue;
+}
+
+.menue:hover{
   background: lightgray;
   border-radius: 20px;
   transition: transform .2s;
@@ -13,8 +36,39 @@ a:hover{
   color: blue;
 }
 
+input {
+  width: 20em;
+  margin-top: 0.75em;
+  border-radius: 10px;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+li {
+  margin-left: 0.75em;
+  margin-top: 1em;
+}
+.menue{
+   border-radius: 20px;
+ }
+.buttons{
+  background-color: white;
+}
+
 .wrapper {
-  padding-top: 3em;
+  border-radius: 30px;
+  position: fixed;
+  bottom: 1em;
+  left: 5%;
+  width: 90%;
+  height: 5em;
+  line-height: 40px;
+  text-align: center;
+  background-color: black;
+}
+
+.nav-item {
+  background-color: white;
 }
 
 .underline {

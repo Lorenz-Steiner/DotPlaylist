@@ -2,14 +2,30 @@
   <nav class="navbar navbar-expand-lg navbar-text">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="home" routerLinkActive="underline"><i class="bi bi-cloud-haze2 mr-2"></i>Home</a>
+        <li class="">
+          <input id="fileName" class="input-group-text" type="text" [(ngModel)]="this.service.playlistFileName">
         </li>
-        <li class="nav-item active">
-          <a [hidden]="!this.service.current" class="nav-link" routerLink="grid" routerLinkActive="underline"><i class="bi bi-grid"></i>Grid</a>
+        <li class="nav-item active buttons icons">
+          <a class="nav-link" (click)="this.service.onSave()"><i class="bi bi-file-earmark-check"></i></a>
         </li>
-        <li class="nav-item active">
-          <a [hidden]="!this.service.current" class="nav-link" routerLink="compact" routerLinkActive="underline"><i class="bi bi-grid-3x3-gap"></i>Compact</a>
+        <li class="nav-item active buttons icons" id="right-icon">
+          <a class="nav-link" (click)="this.service.onExport()"><i class="bi bi-file-earmark-arrow-down"></i></a>
+        </li>
+        <li class="nav-item active buttons icons" id="left-menu">
+          <a class="nav-link" routerLink="home" routerLinkActive="underline"><i class="bi bi-view-list"></i></a>
+        </li>
+        <li [hidden]="!this.service.current" class="nav-item active buttons icons">
+          <a class="nav-link" routerLink="grid" routerLinkActive="underline"><i class="bi bi-list"></i></a>
+        </li>
+        <li [hidden]="!this.service.current" class="nav-item active buttons icons">
+          <a class="nav-link" routerLink="compact" routerLinkActive="underline"><i class="bi bi-grid-3x3-gap"></i></a>
+        </li>
+        <li class="nav-item icons" style="margin-left: 4em" [ngStyle]="{'background-color': this.service.nameCorrect.indexOf('Name CORRUPTED!') < 0 ? 'green' : 'red'}">
+          <a *ngIf="this.service.nameCorrect.indexOf('Name CORRUPTED!') < 0" class="nav-link" (click)="this.service.findUmalaute()"><i class="bi bi-check-lg"></i></a>
+          <a *ngIf="this.service.nameCorrect.indexOf('Name CORRUPTED!') > -1" class="nav-link" (click)="this.service.findUmalaute()"><i class="bi bi-x-lg"></i></a>
+        </li>
+        <li class="nav-item active buttons icons" [ngStyle]="{'background-color':this.service.helpActive ? 'yellow' : 'white'}">
+          <a class="nav-link" (click)="this.service.onHelp()"><i class="bi bi-question-lg"></i></a>
         </li>
       </ul>
     </div>
