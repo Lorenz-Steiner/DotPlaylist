@@ -3,3 +3,17 @@ ol {
   margin-left: 15em;
   text-align: left;
 }
+
+.sel {
+  background-color: dodgerblue !important;
+  border: solid blue 1px !important;
+  z-index: 1 !important;
+}
+
+.sortable-ghost {
+  text-indent: -9999px;
+}
+.sortable-chosen{
+  border-radius: 10px;
+  font-weight: bold;
+}

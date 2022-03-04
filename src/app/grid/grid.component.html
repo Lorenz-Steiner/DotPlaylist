@@ -1,9 +1,7 @@
-<div>
+<div style="margin-top: 1em">
   <div class="row">
-    <ol class="col list-group" id="items">
-      <li *ngFor="let current of this.gridService.playlist.cliplist; let i = index">
-        <span class="badge bg-info">{{this.gridService.filename[i] + "." + this.gridService.fileExtension[i]}}</span>
-      </li>
-    </ol>
+    <div id="items" class="list-group col">
+      <div *ngFor="let current of this.gridService.playlist.cliplist; let i = index" class="list-group-item" style="" draggable="false">{{this.gridService.filename[i] + "." + this.gridService.fileExtension[i]}}</div>
+    </div>
   </div>
 </div>

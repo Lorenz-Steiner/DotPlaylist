@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlaylistService} from "../playlist.service";
-import Sortable from "sortablejs";
+
+import Sortable from 'sortablejs';
 
 @Component({
   selector: 'app-grid',
@@ -15,8 +16,11 @@ export class GridComponent implements OnInit {
   ngOnInit(): void {
     let el = document.getElementById("items");
     // @ts-ignore
-    new Sortable.create(el, {
-      group: '',
+    Sortable.create(el, {
+      selectedClass: "sel",
+      multiDrag: true,
+      multiDragKey: null,
+      avoidImplicitDeselect: false,
       animation: 150
     })
   }
