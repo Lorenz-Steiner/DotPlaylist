@@ -1,7 +1,15 @@
 <div style="margin-top: 1em">
   <div class="row">
     <div id="items" class="list-group col">
-      <div *ngFor="let current of this.gridService.playlist.cliplist; let i = index" class="list-group-item" style="" draggable="false">{{this.gridService.filename[i] + "." + this.gridService.fileExtension[i]}}</div>
+      <div *ngFor="let current of this.gridService.playlist.cliplist; let i = index" class="list-group-item" style="border:1px solid; border-radius: 5px; width: 50%" draggable="false" [ngStyle]="{'border-color': this.gridService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }">
+        <input name="files" style="
+          text-align: left;
+          appearance: none;
+          border: 0;
+          margin-left: 0;
+          width: 90%;" disabled draggable="true" [defaultValue]="gridService.filename[i]">.<label name="extension" style="text-align: right; margin-right: 0;">{{this.gridService.fileExtension[i]}}</label>
+        <p hidden name="correct">{{this.gridService.nameCorrect[i]}}</p>
+      </div>
     </div>
   </div>
 </div>

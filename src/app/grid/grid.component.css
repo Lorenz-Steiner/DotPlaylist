@@ -1,9 +1,3 @@
-ol {
-  margin-top: 2em;
-  margin-left: 15em;
-  text-align: left;
-}
-
 .sel {
   background-color: dodgerblue !important;
   border: solid blue 1px !important;
@@ -17,3 +11,4 @@ ol {
   border-radius: 10px;
   font-weight: bold;
 }
+

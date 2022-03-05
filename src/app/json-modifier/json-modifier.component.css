@@ -36,6 +36,10 @@ div{
   height: 4rem;
 }
 
+.file-name{
+
+}
+
 #fileName{
   width: 20em;
 }
@@ -51,8 +55,13 @@ div{
 .file-name {
   border-radius: 3px;
   margin-top: 0;
-  margin-left: 1em;
-  width: 50%;
+  margin-left: 0;
+  border: 0;
+  width: 73%;
+}
+
+#move{
+  margin-right: 0.5em;
 }
 
 #move:hover {

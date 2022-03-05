@@ -18,7 +18,9 @@ p{
   flex-wrap: wrap;
 }
 
-.collu {
-  flex-basis: 0;
-  flex-grow: 1;
+
+
+.sortable-chosen{
+  border-radius: 10px;
+  font-weight: bold;
 }

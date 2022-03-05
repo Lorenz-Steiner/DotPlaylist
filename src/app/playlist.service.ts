@@ -94,13 +94,14 @@ export class PlaylistService {
   }
 
   onSave(){
+
     for(let i = 0; i < this.playlist.cliplist.length; i++){
-      // @ts-ignore
-      this.playlist.cliplist[i] = document.getElementsByName("files")[i].value + "." + document.getElementsByName("extension")[i].innerText;
       // @ts-ignore
       this.filename[i] = document.getElementsByName("files")[i].value;
       this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
       this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
+      // @ts-ignore
+      this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
     }
   }
 

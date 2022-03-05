@@ -1,19 +1,19 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
   <div style="margin-top: 3em; text-align: center">
     <label style="margin-right: 1em">Open File =></label>
-    <input type="file" (change)="onFileUpload($event)" #fileUpload>
+    <input type="file" (change)="onFileUpload($event)">
     <div class="file-container">
       <input type="file" class="file-drag" (change)="onFileUpload($event)" multiple="true">
     </div>
   </div>
-  <div style="margin-top: 5em" class="fileList">
+  <div style="margin-top: 5em; width: 60%" class="fileList">
     <ul id="items" class="list-group">
       <li *ngFor="let current of this.service.playlist.cliplist; let i = index" class="list-group-item" name="clips">
         <div name="divC">
           <span class="icon-move"><i id="move" class="bi bi-chevron-bar-expand"></i></span>
           <input class="file-name" name="files" [(ngModel)]="this.service.filename[i]">
-          <span class="badge bg-secondary rounded-pill" name="extension">.{{this.service.fileExtension[i]}}</span>
-          <span *ngIf="this.service.nameCorrect[i] === 'Name CORRUPTED!'" class="badge bg-danger rounded-pill"><i class="bi bi-file-earmark-excel"></i><p hidden name="correct">{{this.service.nameCorrect[i]}}</p></span>
+          <span class="badge bg-secondary rounded-pill" >.<label name="extension">{{this.service.fileExtension[i]}}</label></span>
+          <span [hidden]="this.service.nameCorrect[i] !== 'Name CORRUPTED!'" class="badge bg-danger rounded-pill"><i class="bi bi-file-earmark-excel"></i><p hidden name="correct">{{this.service.nameCorrect[i]}}</p></span>
         </div>
       </li>
     </ul>
