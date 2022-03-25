@@ -1,3 +1,5 @@
+<!--Multidrag-View-->
+
 <div style="margin-top: 1em">
   <div class="row">
     <div id="items" class="list-group col">
@@ -7,7 +9,7 @@
           appearance: none;
           border: 0;
           margin-left: 0;
-          width: 90%;" disabled draggable="true" [defaultValue]="gridService.filename[i]">.<label name="extension" style="text-align: right; margin-right: 0;">{{this.gridService.fileExtension[i]}}</label>
+          width: 90%;" disabled draggable="true" [defaultValue]="gridService.filename[i]"><span class="badge bg-secondary rounded-pill" ><label name="extension">{{this.gridService.fileExtension[i]}}</label></span>
         <p hidden name="correct">{{this.gridService.nameCorrect[i]}}</p>
       </div>
     </div>

@@ -1,7 +1,18 @@
+<!--Box-View-->
+
 <div class="base" style="margin-top: 1em">
   <div class="row" id="items">
     <div class="col-auto" *ngFor="let current of compactService.playlist.cliplist; let i = index">
-      <div class="grid-square" [ngStyle]="{'border-color': this.compactService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }"><p>{{i}}</p><p>{{this.compactService.filename[i]}}</p></div>
+      <div class="grid-square" [ngStyle]="{'border-color': this.compactService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }">
+        <input name="files" style="
+          text-align: left;
+          appearance: none;
+          border: 0;
+          margin-left: 0;
+          width: 90%;" disabled draggable="true" [defaultValue]="compactService.filename[i]">
+        <span class="badge bg-secondary rounded-pill" >.<label name="extension">{{this.compactService.fileExtension[i]}}</label></span>
+        <p hidden name="correct">{{this.compactService.nameCorrect[i]}}</p>
+      </div>
     </div>
   </div>
 </div>

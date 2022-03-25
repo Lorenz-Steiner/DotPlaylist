@@ -4,7 +4,7 @@ div{
 }
 
 .list-group-item{
-  width: 35em;
+  width: 32em;
 }
 
 .list-group {
@@ -17,31 +17,23 @@ div{
   overflow: auto;
 }
 
-.input-addon {
-  position: absolute;
-  top: 8px;
-  right: 4px;
-}
 
 .file-container {
-  margin-top: 2em;
-  width: 500px;
-  border: 4px dotted dodgerblue;
+  padding-top: 0;
+  border: 4px dotted grey;
 }
 
 .file-drag {
   opacity: 0;
-  padding: 4rem;
-  width: auto;
-  height: 4rem;
+  width: 40em;
+  height: 100%;
+  z-index: -100;
+  margin-bottom: 0em;
+  display: flex;
 }
 
 .file-name{
-
-}
-
-#fileName{
-  width: 20em;
+  text-overflow: ellipsis ellipsis;
 }
 
 .badge{
@@ -49,7 +41,7 @@ div{
 }
 
 .icon-move{
-  margin-left: 1em;
+  margin-left: 0.4em;
 }
 
 .file-name {

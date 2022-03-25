@@ -2,6 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import {Playlist} from "./playlist";
 import Sortable from "sortablejs";
 import {Event} from "@angular/router";
+import {setOffsetToUTC} from "ngx-bootstrap/chronos/units/offset";
 
 @Injectable({
   providedIn: 'root'
@@ -26,59 +27,53 @@ export class PlaylistService {
 
   getFile(event: EventInit){
     // @ts-ignore
-    if(event.target.files[0].name.split(".").pop() === "playlist"){
+    if(event.target.files.length >= 1) {
       // @ts-ignore
       this.files = event.target.files;
-      if(this.files){
-        this.playlistFile = (this.files)[0];
-        if(this.current) {
-          if (confirm("Do you want to replace the current .playlist?")) {
-            this.playlistFileName = this.playlistFile.name;
-            const fileReader = new FileReader();
-            fileReader.readAsText(this.playlistFile, "UTF-8");
-            fileReader.onload = () => {
-              // @ts-ignore
-              this.playlist = (JSON.parse(fileReader.result.toString()));
-              for (let i = 0; i < this.playlist.cliplist.length; i++) {
-                this.filename[i] = this.playlist.cliplist[i].split(".")[0];
-                this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length - 1];
-              }
-              this.current = true;
-              this.findUmalaute();
+      // @ts-ignore
+      if (event.target.files[0].name.split(".").pop() === "playlist") {
+        if (this.files) {
+          this.playlistFile = (this.files)[0];
+          if (this.current) {
+            if (confirm("Do you want to replace the current .playlist?")) {
+              this.readFile(this.playlistFile);
+            } else {
+              return;
             }
-          }else{
-            return;
+          } else {
+            this.readFile(this.playlistFile);
           }
-        }else {
-         this.playlistFile = (this.files)[0];
-          this.playlistFileName = this.playlistFile.name;
-          const fileReader = new FileReader();
-          fileReader.readAsText(this.playlistFile, "UTF-8");
-          fileReader.onload = () => {
+        }
+      } else {
+        if (this.current) {
+          for (let i = 0; i < this.files.length; i++) {
+            this.filename.push((this.files)[i].name.split(".")[0]);
             // @ts-ignore
-            this.playlist = (JSON.parse(fileReader.result.toString()));
-            for (let i = 0; i < this.playlist.cliplist.length; i++) {
-              this.filename[i] = this.playlist.cliplist[i].split(".")[0];
-              this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length - 1];
-            }
-            this.current = true;
-            this.findUmalaute();
+            this.fileExtension.push(this.files[i].name.split(".").pop());
+            this.playlist.cliplist.push(this.filename[i] + "." + this.fileExtension[i]);
+            console.log(this.playlist.cliplist);
           }
+        } else {
+          alert("No .playlist Uploaded!");
         }
       }
-    }else{
-      if(this.current){
-        // @ts-ignore
-        this.files = event.target.files;
-        for(let i = 0; i < this.files.length; i++){
-          this.filename.push((this.files)[i].name.split(".")[0]);
-          // @ts-ignore
-          this.fileExtension.push(files.name.split(".").pop());
-          this.playlist.cliplist.push(this.filename.pop() + "." + this.fileExtension.pop());
-        }
-      }else {
-        alert("No .playlist Uploaded!");
+    }
+  }
+
+  readFile(fileToRead: File) {
+    // @ts-ignore
+    this.playlistFileName = this.playlistFile.name;
+    const fileReader = new FileReader();
+    fileReader.readAsText(fileToRead, "UTF-8");
+    fileReader.onload = () => {
+      // @ts-ignore
+      this.playlist = (JSON.parse(fileReader.result.toString()));
+      for (let i = 0; i < this.playlist.cliplist.length; i++) {
+        this.filename[i] = this.playlist.cliplist[i].split(".")[0];
+        this.fileExtension[i] = this.playlist.cliplist[i].split(".")[this.playlist.cliplist[i].split(".").length - 1];
       }
+      this.current = true;
+      this.findUmalaute();
     }
   }
 
@@ -94,7 +89,6 @@ export class PlaylistService {
   }
 
   onSave(){
-
     for(let i = 0; i < this.playlist.cliplist.length; i++){
       // @ts-ignore
       this.filename[i] = document.getElementsByName("files")[i].value;
