@@ -92,10 +92,14 @@ export class PlaylistService {
     for(let i = 0; i < this.playlist.cliplist.length; i++){
       // @ts-ignore
       this.filename[i] = document.getElementsByName("files")[i].value;
+      console.log(this.filename[i]);
       this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
+      console.log(this.fileExtension[i]);
       this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
+      console.log( this.nameCorrect[i]);
       // @ts-ignore
       this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
+      console.log(this.playlist.cliplist[i]);
     }
   }
 
@@ -120,6 +124,10 @@ export class PlaylistService {
 
   onHelp(){
     this.helpActive = !this.helpActive;
+  }
+
+  onDelete(){
+
   }
 
   constructor() { }

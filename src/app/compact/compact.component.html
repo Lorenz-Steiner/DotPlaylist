@@ -4,13 +4,19 @@
   <div class="row" id="items">
     <div class="col-auto" *ngFor="let current of compactService.playlist.cliplist; let i = index">
       <div class="grid-square" [ngStyle]="{'border-color': this.compactService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }">
-        <input name="files" style="
+        <textarea name="files" style="
+          background-color: #e4e4e4;
+          font-size: 20px;
+          resize: none;
           text-align: left;
           appearance: none;
           border: 0;
           margin-left: 0;
-          width: 90%;" disabled draggable="true" [defaultValue]="compactService.filename[i]">
+          width: 90%;
+          word-break: break-word" draggable="true" [(ngModel)]="compactService.filename[i]"></textarea>
         <span class="badge bg-secondary rounded-pill" >.<label name="extension">{{this.compactService.fileExtension[i]}}</label></span>
+        <span class="badge rounded-pill delete" style="background-color: rgba(255,0,0,0.5); margin-left: 0.3em"><i class="bi bi-trash3"></i></span>
+        <span [hidden]="this.compactService.nameCorrect[i] !== 'Name CORRUPTED!'" class="badge bg-danger rounded-pill" style="margin-left: 0.3em"><i class="bi bi-exclamation-triangle"></i><p hidden name="correct">{{this.compactService.nameCorrect[i]}}</p></span>
         <p hidden name="correct">{{this.compactService.nameCorrect[i]}}</p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 .sel {
-  background-color: dodgerblue !important;
-  border: solid blue 1px !important;
+  background-color: dodgerblue ;
+  border: solid blue 1px ;
   z-index: 1 !important;
 }
 
@@ -11,4 +11,3 @@
   border-radius: 10px;
   font-weight: bold;
 }
-

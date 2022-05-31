@@ -1,5 +1,13 @@
 a{
+  height: 55px;
+  width: 55px;
   color: black;
+  border-radius: 50%;
+  background-color: white;
+}
+a:hover{
+  color: white;
+  background-color: #b3b147;
 }
 
 i{
@@ -15,25 +23,15 @@ i{
 }
 
 .icons {
-  width: 2.5em;
-  height: 2.5em;
+  width: auto;
   border-radius: 50%;
 }
 
 .icons:hover{
-  background: lightgray;
+  color: white;
+  background-color: #b3b147;
   border-radius: 50%;
   transition: transform .2s;
-  transform: scale(1.2);
-  color: blue;
-}
-
-.menue:hover{
-  background: lightgray;
-  border-radius: 20px;
-  transition: transform .2s;
-  transform: scale(1.2);
-  color: blue;
 }
 
 input {
@@ -48,12 +46,6 @@ li {
   margin-left: 0.75em;
   margin-top: 1em;
 }
-.menue{
-   border-radius: 20px;
- }
-.buttons{
-  background-color: white;
-}
 
 .wrapper {
   border-radius: 30px;
@@ -64,7 +56,7 @@ li {
   height: 5em;
   line-height: 40px;
   text-align: center;
-  background-color: black;
+  background-color: #173645;
   box-shadow: 3px 3px 60px 0px rgb(0 0 0 / 60%);
 }
 
@@ -72,6 +64,10 @@ li {
   background-color: white;
 }
 
-.underline {
-  text-decoration: underline 0.15em forestgreen;
+.nav-item:hover{
+  color: white;
+}
+
+.active {
+  background-color: rgba(179, 177, 71, 1);
 }

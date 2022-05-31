@@ -13,4 +13,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onExport(){
+    this.service.onSave();
+    this.service.onExport();
+  }
 }

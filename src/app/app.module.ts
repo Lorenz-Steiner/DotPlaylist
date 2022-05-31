@@ -9,6 +9,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { CompactComponent } from './compact/compact.component';
 import { GridComponent } from './grid/grid.component';
 import { HelpComponent } from './help/help.component';
+import { InputComponent } from './input/input.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     HeaderComponent,
     CompactComponent,
     GridComponent,
-    HelpComponent
+    HelpComponent,
+    InputComponent
   ],
     imports: [
         BrowserModule,

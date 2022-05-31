@@ -3,13 +3,15 @@
 <div style="margin-top: 1em">
   <div class="row">
     <div id="items" class="list-group col">
-      <div *ngFor="let current of this.gridService.playlist.cliplist; let i = index" class="list-group-item" style="border:1px solid; border-radius: 5px; width: 50%" draggable="false" [ngStyle]="{'border-color': this.gridService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }">
+      <div *ngFor="let current of this.gridService.playlist.cliplist; let i = index" class="list-group-item" style="border:1px solid; border-radius: 5px; width: 60%" draggable="false" [ngStyle]="{'border-color': this.gridService.nameCorrect[i] === 'Name CORRUPTED!'  ? 'red' : 'grey' }">
         <input name="files" style="
           text-align: left;
           appearance: none;
           border: 0;
           margin-left: 0;
           width: 90%;" disabled draggable="true" [defaultValue]="gridService.filename[i]"><span class="badge bg-secondary rounded-pill" ><label name="extension">{{this.gridService.fileExtension[i]}}</label></span>
+        <span class="badge rounded-pill delete" style="background-color: rgba(255,0,0,0.5); margin-left: 1em"><i class="bi bi-trash3"></i></span>
+        <span [hidden]="this.gridService.nameCorrect[i] !== 'Name CORRUPTED!'" class="badge bg-danger rounded-pill"><i class="bi bi-exclamation-triangle"></i><p hidden name="correct">{{this.gridService.nameCorrect[i]}}</p></span>
         <p hidden name="correct">{{this.gridService.nameCorrect[i]}}</p>
       </div>
     </div>

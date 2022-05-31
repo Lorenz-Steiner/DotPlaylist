@@ -23,18 +23,8 @@ export class JsonModifierComponent implements OnInit {
     });
   }
 
-  onFileUpload(event: Event){
-   this.service.getFile(event);
+  onDelete(){
+    this.service.onDelete();
   }
-
-
-  onSave(){
-    this.service.onSave();
-  }
-
-  onExport(){
-    this.service.onExport();
-  }
-
 
 }

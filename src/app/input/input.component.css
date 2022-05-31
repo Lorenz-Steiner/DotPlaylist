@@ -3,12 +3,8 @@ div{
   text-align: left;
 }
 
-.delete:hover{
-  cursor: pointer;
-}
-
 .list-group-item{
-  width: 40em;
+  width: 32em;
 }
 
 .list-group {
@@ -25,7 +21,8 @@ div{
 .file-container {
   padding-top: 0;
   background-color: rgba(0,0,0,0.1);
-  border-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 .file-container:hover{
   cursor: pointer;
@@ -53,7 +50,6 @@ div{
 }
 
 .file-name {
-  border-radius: 3px;
   margin-top: 0;
   margin-left: 0;
   border: 0;
