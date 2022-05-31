@@ -4,6 +4,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+
+import Sortable from 'sortablejs';
+import {MultiDrag} from "sortablejs";
+Sortable.mount(new MultiDrag());
+
+
 if (environment.production) {
   enableProdMode();
 }

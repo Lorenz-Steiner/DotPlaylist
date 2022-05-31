@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
 import {PlaylistService} from "../playlist.service";
 
+
 @Component({
   selector: 'app-json-modifier',
   templateUrl: './json-modifier.component.html',
@@ -18,7 +19,12 @@ export class JsonModifierComponent implements OnInit {
     let el = document.getElementById("items");
     // @ts-ignore
     this.sortable = Sortable.create(el, {
+      selectedClass: "sel",
+      multiDrag: true,
+      multiDragKey: 'CTRL',
+      avoidImplicitDeselect: false,
       animation: 150,
+      fallbackTolerance: 3,
       handle: '.icon-move'
     });
   }

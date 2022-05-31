@@ -1,7 +1,7 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
   <div class="input-wrapper">
-    <div style="margin-top: 5em; width: 80%; z-index: 1" class="fileList">
-        <ul id="items" class="list-group" style="margin-top: 0; margin-left: 12.5%;">
+    <div style="margin-top: 5em; z-index: 1" class="fileList">
+        <ul id="items" class="list-group" style="margin-top: 0;">
           <li *ngFor="let current of this.service.playlist.cliplist; let i = index" class="list-group-item" name="clips">
             <div name="divC">
               <span class="icon-move"><i id="move" class="bi bi-grip-horizontal"></i></span>

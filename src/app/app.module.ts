@@ -7,15 +7,12 @@ import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
 import {RouterModule, Routes} from "@angular/router";
 import { CompactComponent } from './compact/compact.component';
-import { GridComponent } from './grid/grid.component';
 import { HelpComponent } from './help/help.component';
 import { InputComponent } from './input/input.component';
 
-
 const routes: Routes = [
   {path: 'home', component: JsonModifierComponent},
-  {path: 'compact', component: CompactComponent},
-  {path: 'grid', component: GridComponent}
+  {path: 'compact', component: CompactComponent}
 ]
 
 @NgModule({
@@ -24,7 +21,6 @@ const routes: Routes = [
     JsonModifierComponent,
     HeaderComponent,
     CompactComponent,
-    GridComponent,
     HelpComponent,
     InputComponent
   ],
