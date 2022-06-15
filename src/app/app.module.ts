@@ -13,7 +13,7 @@ import { InputComponent } from './input/input.component';
 const routes: Routes = [
   {path: 'home', component: JsonModifierComponent},
   {path: 'compact', component: CompactComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 ]
 
 @NgModule({
