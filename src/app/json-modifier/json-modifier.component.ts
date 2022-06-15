@@ -29,8 +29,4 @@ export class JsonModifierComponent implements OnInit {
     });
   }
 
-  onDelete(){
-    this.service.onDelete();
-  }
-
 }

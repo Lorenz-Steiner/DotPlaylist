@@ -92,19 +92,18 @@ export class PlaylistService {
     for(let i = 0; i < this.playlist.cliplist.length; i++){
       // @ts-ignore
       this.filename[i] = document.getElementsByName("files")[i].value;
-      console.log(this.filename[i]);
+      //console.log(this.filename[i]);
       this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
-      console.log(this.fileExtension[i]);
+      //console.log(this.fileExtension[i]);
       this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
-      console.log( this.nameCorrect[i]);
+      //console.log( this.nameCorrect[i]);
       // @ts-ignore
       this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
-      console.log(this.playlist.cliplist[i]);
     }
   }
 
   onExport(){
-    console.log(this.playlistFileName.split(".").length);
+    //console.log(this.playlistFileName.split(".").length);
     if(this.playlistFileName.split(".").length < 3){
       this.playlist.name = this.playlistFileName.split(".")[0];
     }else{
@@ -123,11 +122,21 @@ export class PlaylistService {
   }
 
   onHelp(){
-    this.helpActive = !this.helpActive;
+    confirm("INFO \nChecks filenames for not allowed characters. Displays filename extensions. Can save  and export new ordered playlist.")
+    //this.helpActive = !this.helpActive;
   }
 
-  onDelete(){
-
+  onDelete(index: number){
+    try {
+      if (index > -1) {
+        this.filename.splice(index, 1);
+        this.fileExtension.splice(index, 1);
+        this.nameCorrect.splice(index, 1);
+        this.playlist.cliplist.splice(index, 1);
+      }
+    }finally {
+      console.log("Removed " + index + "item");
+    }
   }
 
   constructor() { }

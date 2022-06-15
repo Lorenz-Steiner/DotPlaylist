@@ -19,5 +19,4 @@ export class CompactComponent implements OnInit {
       animation: 150
     })
   }
-
 }

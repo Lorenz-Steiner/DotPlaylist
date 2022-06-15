@@ -9,11 +9,11 @@ import {PlaylistService} from "../playlist.service";
 export class InputComponent implements OnInit {
 
   constructor(public service: PlaylistService) { }
-
   ngOnInit(): void {
   }
 
   onFileUpload(event: Event){
+    event.preventDefault();
     this.service.getFile(event);
     console.log(this.service.playlistFileName);
     console.log(this.service.playlist.name);
