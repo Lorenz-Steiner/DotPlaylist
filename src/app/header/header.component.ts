@@ -17,4 +17,8 @@ export class HeaderComponent implements OnInit {
     this.service.onSave();
     this.service.onExport();
   }
+
+  saveOrder(){
+    this.service.onSave();
+  }
 }

@@ -63,6 +63,7 @@ export class PlaylistService {
   readFile(fileToRead: File) {
     // @ts-ignore
     this.playlistFileName = this.playlistFile.name;
+    this.playlist.name = this.playlistFileName.split(".playlist")[0];
     const fileReader = new FileReader();
     fileReader.readAsText(fileToRead, "UTF-8");
     fileReader.onload = () => {
@@ -105,7 +106,7 @@ export class PlaylistService {
   onExport(){
     //console.log(this.playlistFileName.split(".").length);
     if(this.playlistFileName.split(".").length < 3){
-      this.playlist.name = this.playlistFileName.split(".")[0];
+      //this.playlist.name = this.playlistFileName.split(".")[0];
     }else{
       alert("Filename of .playlist is corrupted");
       return;
