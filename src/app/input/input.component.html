@@ -5,8 +5,11 @@
     <div class="column column-1" style="border-bottom-left-radius: 30px">
       <input title=".Playlist importieren" type="file" class="file-drag" (change)="onFileUpload($event)" multiple="true">
     </div>
-    <div class="column column-2" style="border-bottom-right-radius: 30px">
-      <input id="fileName" class="input-group-text file-name" type="text" [(ngModel)]="this.service.playlist.name">
+    <div class="column column-2" style="border-bottom-right-radius: 30px; position: relative;">
+      <div style="position: absolute; top: 30%; width: 90%;">
+        <span class="badge rounded-pill playlist_badge">.<label for="fileName" >playlist</label></span>
+        <input id="fileName" class="input-group-text file-name" type="text" [(ngModel)]="this.service.playlist.name">
+      </div>
     </div>
   </div>
 </div>

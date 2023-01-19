@@ -3,6 +3,23 @@
   border: solid blue 1px ;
 }
 
+.extension_input {
+  background: none;
+  border: none;
+  width: 2.5em;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.dublicate:hover{
+  cursor: pointer;
+}
+.dublicate {
+  background-color: lightblue;
+  float: right;
+}
+
 .sortable-ghost {
   text-indent: -9999px;
 }
@@ -11,9 +28,37 @@
   font-weight: bold;
 }
 
+.trashbin{
+  color: black;
+  margin-left: 1em;
+  visibility: hidden;
+  transition: color 1s;
+}
+
+.delete_all:hover > .trashbin{
+  visibility: visible;
+  color: red;
+}
+
 div{
   margin: 0 auto;
   text-align: left;
+}
+
+.delete_all {
+    background-color: hsl(59, 43%, 49%);
+    color: #173645;
+    border: none;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: block;
+    width: 10em;
+    transition: width .5s;
+}
+
+.delete_all:hover{
+  background-color: hsl(59, 80%, 60%);
+  width: 13em;
 }
 
 .delete:hover{
@@ -55,11 +100,13 @@ div{
 }
 
 .file-name{
+
   text-overflow: ellipsis ellipsis;
 }
 
 .badge{
-  margin-left: 1em;
+  margin-left: .5em;
+  float: right;
 }
 
 .icon-move{
@@ -71,7 +118,7 @@ div{
   margin-top: 0;
   margin-left: 0;
   border: 0;
-  width: 73%;
+  width: 65%;
 }
 
 #move{

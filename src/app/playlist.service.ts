@@ -1,8 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import {Playlist} from "./playlist";
 import Sortable from "sortablejs";
-import {Event} from "@angular/router";
-import {setOffsetToUTC} from "ngx-bootstrap/chronos/units/offset";
+import { Form, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +22,9 @@ export class PlaylistService {
   nameCorrect: string[] = [];
   sortable?:Sortable;
 
+  dublicate: string = "";
+  dublicate_file: string = "";
+  dublicate_name_corr: string = "";
 
 
   getFile(event: EventInit){
@@ -53,6 +55,7 @@ export class PlaylistService {
             this.playlist.cliplist.push(this.filename[i] + "." + this.fileExtension[i]);
             console.log(this.playlist.cliplist);
           }
+          this.findUmalaute();
         } else {
           alert("No .playlist Uploaded!");
         }
@@ -90,16 +93,25 @@ export class PlaylistService {
   }
 
   onSave(){
-    for(let i = 0; i < this.playlist.cliplist.length; i++){
-      // @ts-ignore
-      this.filename[i] = document.getElementsByName("files")[i].value;
-      //console.log(this.filename[i]);
-      this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
-      //console.log(this.fileExtension[i]);
-      this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
-      //console.log( this.nameCorrect[i]);
-      // @ts-ignore
-      this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
+    if(this.playlist.cliplist.length > 0){
+      try{
+        for(let i = 0; i < this.playlist.cliplist.length; i++){
+          // @ts-ignore
+          this.filename[i] = document.getElementsByName("files")[i].value;
+          //console.log(this.filename[i]);
+          this.fileExtension[i] = document.getElementsByName("extension")[i].innerText;
+          //console.log(this.fileExtension[i]);
+          this.nameCorrect[i] = document.getElementsByName("correct")[i].innerText;
+          //console.log( this.nameCorrect[i]);
+          // @ts-ignore
+          this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
+        }
+        alert("Items saved");
+      }catch{
+        alert("Error while saving items");
+      }finally{
+        this.findUmalaute();
+      }
     }
   }
 
@@ -136,8 +148,49 @@ export class PlaylistService {
         this.playlist.cliplist.splice(index, 1);
       }
     }finally {
-      console.log("Removed " + index + "item");
+      console.log("Removed " + index + " item");
     }
+  }
+
+  onDeleteAll(){
+    try{
+      this.playlist.cliplist = [];
+      
+    }finally{
+      console.log("Cliplist cleared!");
+    }
+  }
+
+  onDublicate(index: number){
+    try{
+      if(index > -1){
+        this.dublicate = this.playlist.cliplist[index];
+        this.playlist.cliplist.splice(index + 1, 0, this.dublicate);
+
+        this.dublicate_file = this.filename[index];
+        this.filename.splice(index + 1, 0, this.dublicate_file);
+
+        this.dublicate_name_corr = this.nameCorrect[index];
+        this.nameCorrect.splice(index + 1, 0, this.dublicate_name_corr);
+
+        this.findUmalaute();
+        console.log("Dublicated" + index +  " File");
+      }
+    }catch{
+      alert("Error while dublicating");
+    }
+  }
+
+  addNewClipSubmit(form: FormGroup){
+    console.log("Filename lenght: " + this.filename.length + "file extension: " + this.fileExtension.length + "Name Correct Length: " + this.nameCorrect.length +"Playlist lenght: " +  this.playlist.cliplist.length);
+    this.filename.push(form.controls['file_name'].value); 
+    console.log(form.controls['file_extension'].value);
+    this.fileExtension.push(form.controls['file_extension'].value);
+    this.nameCorrect.push("");
+    this.playlist.cliplist.push(form.controls['file_name'].value + "." + form.controls['file_extension'].value);
+    this.findUmalaute();
+    this.onSave();
+    console.log("Filename lenght: " + this.filename.length + "file extension: " + this.fileExtension.length + "Name Correct Length: " + this.nameCorrect.length +"Playlist lenght: " +  this.playlist.cliplist.length);
   }
 
   constructor() { }

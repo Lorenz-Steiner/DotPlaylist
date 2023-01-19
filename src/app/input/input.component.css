@@ -3,6 +3,10 @@ div{
   text-align: left;
 }
 
+.playlist_badge {
+  background-color: hsl(59, 43%, 49%); 
+  float: right;
+}
 
 .input-container{
   display: inline-block;
@@ -25,7 +29,7 @@ div{
 }
 
 .column-1 {
-  background: #B3B147;
+  background: #b3b147;
 }
 
 .column-2{
@@ -40,12 +44,10 @@ div{
 }
 
 
+
 .file-name {
-  margin-top: 25px;
-  margin-left: auto;
-  margin-right: auto;
   border: 0;
-  width: 50%;
+  width: 70%;
 }
 
 #move{
