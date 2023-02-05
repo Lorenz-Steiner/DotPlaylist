@@ -22,7 +22,7 @@
           <a class="nav-link" (click)="this.service.onHelp()" [ngStyle]="{'background-color':this.service.helpActive ? '#b3b147' : ''}"><i class="bi bi-question-lg"></i></a>
         </li>
         <li class="nav-item" style="background-color: #173645" >
-          <a class="nav-link" (click)="this.service.disableAlerts()" [ngStyle]="{'background-color':!this.service.alertsDisabled ? '#b3b147' : ''}"><i class="bi bi-exclamation-lg"></i></a>
+          <a class="nav-link" (click)="this.service.disableAlerts()" [ngStyle]="{'background-color':this.service.alertsDisabled ? '#b3b147' : ''}"><i class="bi bi-exclamation-lg"></i></a>
         </li>
       </ul>
     </div>

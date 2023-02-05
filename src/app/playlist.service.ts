@@ -169,7 +169,8 @@ export class PlaylistService {
   onDeleteAll(){
     try{
       this.playlist.cliplist = [];
-      
+      this.filename = [];
+      this.fileExtension = [];
     }finally{
       console.log("Cliplist cleared!");
       this.showArrays();
