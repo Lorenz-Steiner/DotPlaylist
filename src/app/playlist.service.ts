@@ -9,7 +9,7 @@ import { Form, FormGroup } from '@angular/forms';
 export class PlaylistService {
 
   playlist: Playlist = new Playlist();
-  helpActive: boolean = false;
+
   files:File[] =[];
   playlistFile?: File;
   current: boolean = false;
@@ -25,6 +25,10 @@ export class PlaylistService {
   dublicate: string = "";
   dublicate_file: string = "";
   dublicate_name_corr: string = "";
+  dublicate_extension: string = "";
+
+  helpActive: boolean = false;
+  alertsDisabled: boolean = false;
 
 
   getFile(event: EventInit){
@@ -57,7 +61,9 @@ export class PlaylistService {
           }
           this.findUmalaute();
         } else {
-          alert("No .playlist Uploaded!");
+          if(!this.alertsDisabled){
+            alert("No .playlist Uploaded!");
+          }
         }
       }
     }
@@ -106,11 +112,16 @@ export class PlaylistService {
           // @ts-ignore
           this.playlist.cliplist[i] = this.filename[i] + "." + this.fileExtension[i];
         }
-        alert("Items saved");
+        if(!this.alertsDisabled){
+          alert("Items saved");
+        } 
       }catch{
-        alert("Error while saving items");
+        if(!this.alertsDisabled){
+          alert("Error while saving items");
+        }
       }finally{
         this.findUmalaute();
+        this.showArrays();
       }
     }
   }
@@ -120,8 +131,10 @@ export class PlaylistService {
     if(this.playlistFileName.split(".").length < 3){
       //this.playlist.name = this.playlistFileName.split(".")[0];
     }else{
-      alert("Filename of .playlist is corrupted");
-      return;
+      if(!this.alertsDisabled){
+        alert("Filename of .playlist is corrupted");
+        return;
+      }
     }
 
     var sJson = JSON.stringify(this.playlist);
@@ -149,6 +162,7 @@ export class PlaylistService {
       }
     }finally {
       console.log("Removed " + index + " item");
+      this.showArrays();
     }
   }
 
@@ -158,6 +172,7 @@ export class PlaylistService {
       
     }finally{
       console.log("Cliplist cleared!");
+      this.showArrays();
     }
   }
 
@@ -170,28 +185,43 @@ export class PlaylistService {
         this.dublicate_file = this.filename[index];
         this.filename.splice(index + 1, 0, this.dublicate_file);
 
+        this.dublicate_extension = this.fileExtension[index];
+        this.fileExtension.splice(index + 1, 0, this.dublicate_extension);
+
         this.dublicate_name_corr = this.nameCorrect[index];
         this.nameCorrect.splice(index + 1, 0, this.dublicate_name_corr);
 
         this.findUmalaute();
         console.log("Dublicated" + index +  " File");
+        this.showArrays();
       }
     }catch{
-      alert("Error while dublicating");
+      if(!this.alertsDisabled){
+        alert("Error while dublicating");
+      }
     }
   }
 
   addNewClipSubmit(form: FormGroup){
-    console.log("Filename lenght: " + this.filename.length + "file extension: " + this.fileExtension.length + "Name Correct Length: " + this.nameCorrect.length +"Playlist lenght: " +  this.playlist.cliplist.length);
+    this.showArrays();
     this.filename.push(form.controls['file_name'].value); 
     console.log(form.controls['file_extension'].value);
     this.fileExtension.push(form.controls['file_extension'].value);
-    this.nameCorrect.push("");
+    this.nameCorrect.push("Valid");
     this.playlist.cliplist.push(form.controls['file_name'].value + "." + form.controls['file_extension'].value);
-    this.findUmalaute();
-    this.onSave();
-    console.log("Filename lenght: " + this.filename.length + "file extension: " + this.fileExtension.length + "Name Correct Length: " + this.nameCorrect.length +"Playlist lenght: " +  this.playlist.cliplist.length);
+    //this.findUmalaute();
+    //this.onSave();
+    this.showArrays();
   }
+
+  showArrays(){
+    console.log("Filename lenght: " + this.filename.length + " file extension: " + this.fileExtension.length + " Name Correct Length: " + this.nameCorrect.length +" Playlist lenght: " +  this.playlist.cliplist.length);
+  }
+
+  disableAlerts(){
+    this.alertsDisabled = !this.alertsDisabled;
+  }
+
 
   constructor() { }
 }

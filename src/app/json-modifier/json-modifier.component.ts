@@ -2,7 +2,6 @@ import {Component, Directive, EventEmitter, Input, OnInit, Output} from '@angula
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
 import {PlaylistService} from "../playlist.service";
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -40,7 +39,6 @@ export class JsonModifierComponent implements OnInit{
 
   EnterSubmit(event: KeyboardEvent){
     if (event.key === 'Enter') {
-      alert('Enter key is pressed, form will be submitted');
       //calling submit method if key pressed is Enter.
       this.service.addNewClipSubmit(this.userForm); 
     } 

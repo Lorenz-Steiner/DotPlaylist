@@ -14,11 +14,11 @@
             </div>
           </li>
           
-          <div *ngIf="this.service.playlist.name != ''" >
-            <li class="list-group-item" >
+          <div *ngIf="this.service.playlist.name != ''">
+            <li class="list-group-item" style="background-color: ghostwhite;">
               <form [formGroup]="userForm" (ngSubmit)="this.service.addNewClipSubmit(userForm)" (keydown)="EnterSubmit($event)">
                 <span class="icon-move"><i id="move" class="bi bi-grip-horizontal"></i></span>
-                <input formControlName="file_name" class="file-name" name="files" placeholder="Next Clip">
+                <input formControlName="file_name" class="file-name" name="files" placeholder="Next Clip" style="background-color: ghostwhite;">
                 <div style="float: right;" *ngIf="this.service.playlist.cliplist[this.service.playlist.cliplist.length + 1] != ''">
                   <span class="badge bg-secondary rounded-pill" >.<label contenteditable="true"><input class="extension_input" formControlName="file_extension" [value]="this.file_extension" type="text"></label></span>
                 </div>
@@ -36,5 +36,4 @@
         </ul>
     </div>
   </div>
-  <button hidden id="myBtn" onclick="javascript:alert('Hello World!')">Button</button>
 </div>

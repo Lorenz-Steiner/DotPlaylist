@@ -1,9 +1,8 @@
 <div class="file-container" id="dropzone">
-  <!--<span style="z-index: 1; color: white"><i class="bi bi-file-earmark-plus"></i></span><br>
-  <label style="text-align: center; z-index: 1">.Playlist importieren</label>-->
   <div class="row">
-    <div class="column column-1" style="border-bottom-left-radius: 30px">
-      <input title=".Playlist importieren" type="file" class="file-drag" (change)="onFileUpload($event)" multiple="true">
+    <div class="column column-1 import_Section">
+      <label for="import" class="input_label">Import file <i class="bi bi-hand-index-thumb"></i></label>
+      <input id="import" title=".Playlist importieren" type="file" class="file-drag" (change)="onFileUpload($event)" multiple="true">
     </div>
     <div class="column column-2" style="border-bottom-right-radius: 30px; position: relative;">
       <div style="position: absolute; top: 30%; width: 90%;">

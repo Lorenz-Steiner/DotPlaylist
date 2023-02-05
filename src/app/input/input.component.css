@@ -1,3 +1,8 @@
+.import_Section{
+  position: relative;
+  border-bottom-left-radius: 30px; 
+}
+
 div{
   margin: 0 auto;
   text-align: left;
@@ -6,6 +11,19 @@ div{
 .playlist_badge {
   background-color: hsl(59, 43%, 49%); 
   float: right;
+}
+
+
+
+.input_label {
+  position: absolute; 
+  left: 50%;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  font-size: xx-large;
+  color: #173645;
 }
 
 .input-container{
