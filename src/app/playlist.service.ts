@@ -177,33 +177,28 @@ export class PlaylistService {
     }
   }
 
-  onDublicate(index: number) {
-    try {
-      // Prüfen, ob der Index in allen Arrays gültig ist
-      if (
-        index > -1
-      ) {
-        // Duplikate erzeugen
-        const dublicateClip = this.playlist.cliplist[index];
-        const dublicateFile = this.filename[index];
-        const dublicateExtension = this.fileExtension[index];
-        const dublicateNameCorr = this.nameCorrect[index];
+  onDublicate(index: number){
+    try{
+      if(index > -1){
+        this.dublicate = this.playlist.cliplist[index];
+        this.playlist.cliplist.splice(index + 1, 0, this.dublicate);
 
-        // An gleicher Stelle in allen Arrays einfügen
-        this.playlist.cliplist.splice(index + 1, 0, dublicateClip);
-        this.filename.splice(index + 1, 0, dublicateFile);
-        this.fileExtension.splice(index + 1, 0, dublicateExtension);
-        this.nameCorrect.splice(index + 1, 0, dublicateNameCorr);
+        this.dublicate_file = this.filename[index];
+        this.filename.splice(index + 1, 0, this.dublicate_file);
+
+        this.dublicate_extension = this.fileExtension[index];
+        this.fileExtension.splice(index + 1, 0, this.dublicate_extension);
+
+        this.dublicate_name_corr = this.nameCorrect[index];
+        this.nameCorrect.splice(index + 1, 0, this.dublicate_name_corr);
 
         this.findUmalaute();
-        console.log("Dublicated " + index + " File");
+        console.log("Dublicated" + index +  " File");
         this.showArrays();
-      } else {
-        throw new Error("Index out of bounds");
       }
-    } catch (e) {
-      if (!this.alertsDisabled) {
-        alert("Error while dublicating: " + e);
+    }catch{
+      if(!this.alertsDisabled){
+        alert("Error while dublicating");
       }
     }
   }
