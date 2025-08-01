@@ -181,11 +181,7 @@ export class PlaylistService {
     try {
       // Prüfen, ob der Index in allen Arrays gültig ist
       if (
-        index > -1 &&
-        index < this.playlist.cliplist.length &&
-        index < this.filename.length &&
-        index < this.fileExtension.length &&
-        index < this.nameCorrect.length
+        index > -1
       ) {
         // Duplikate erzeugen
         const dublicateClip = this.playlist.cliplist[index];
